@@ -56,3 +56,13 @@ for col in features.columns:
 
 """Divide features and labels for train and test parts"""
 features_train, features_test, labels_train, labels_test = train_test_split(features, labels, test_size = 0.20)
+
+
+
+
+"""Create ANN model"""
+def design_model(feature_numbers, learning_rate, layers_modification = []):
+  '''Create Sequential model object'''
+  model = Sequential()
+
+  return model
