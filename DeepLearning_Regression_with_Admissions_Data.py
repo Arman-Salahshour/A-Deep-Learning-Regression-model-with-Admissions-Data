@@ -69,12 +69,32 @@ def design_model(feature_numbers, learning_rate, layers_modification = []):
     input = layers.InputLayer(input_shape = (feature_numbers,))
     model.add(input)
 
-    #Initialize hidden layer
-    hidden_layer = layers.Dense(units = 16, activation = 'relu')
 
-    #Add hidden layers
-    model.add(hidden_layer)
-    model.add(layers.Dropout(0.2))
+    if len(layers_modification) == 0:
+        #Initialize hidden layer
+        hidden_layer = layers.Dense(units = 16, activation = 'relu')
+
+        #Add hidden layers
+        model.add(hidden_layer)
+        model.add(layers.Dropout(0.2))
+
+
+    else:
+        if len(layers_modification) !=3 :
+            raise ValueError('layers_modification list must have three items')
+
+        #Determine the number of layers and the number of units in each of them
+        n_layers, first_layer_nodes, last_layer_nodes = layers_modification
+        neurons_counter = math.ceil((last_layer_nodes - first_layer_nodes) / n_layers)
+
+        #Add layers
+        for i in range(first_layer_nodes, last_layer_nodes, neurons_counter):
+            model.add(layers.Dense(units = i))
+            if np.random.rand() > 0.5:
+                model.add(layers.Dropout(np.random.rand() * 0.3 + 0.2))
+
+        model.add(layers.Dense(units = abs(neurons_counter), activation = 'relu'))
+        
 
     #Initialize optimizer
     optimizer = Adam(learning_rate = learning_rate)
