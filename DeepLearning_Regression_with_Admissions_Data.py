@@ -120,3 +120,11 @@ early = EarlyStopping(monitor = 'val_loss', mode = 'min', patience = 40, verbose
 
 """Fit ANN model"""
 model.fit(features_train, labels_train, epochs = 500, callbacks = [early], batch_size = 5, validation_split = 0.2, verbose = 1)
+
+
+
+"""Create a Dummy Regressor model to find the least accuracy that model should have"""
+dummy = DummyRegressor()
+
+"""Fit dummy model"""
+dummy.fit(features_train, labels_train)
