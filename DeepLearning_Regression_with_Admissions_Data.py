@@ -39,3 +39,10 @@ columns = features.columns
 
 """Convert all of the columns' datatype to float64"""
 features = features.apply(lambda col: col.astype('float64'))
+
+
+"""Standardize all of the features"""
+scaler = StandardScaler()
+normalized_data = scaler.fit_transform(features)
+features = pd.DataFrame(data = normalized_data, columns = columns)
+print(features.describe())
