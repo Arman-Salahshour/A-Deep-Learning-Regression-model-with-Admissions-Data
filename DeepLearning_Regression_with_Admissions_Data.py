@@ -46,3 +46,9 @@ scaler = StandardScaler()
 normalized_data = scaler.fit_transform(features)
 features = pd.DataFrame(data = normalized_data, columns = columns)
 print(features.describe())
+
+
+"""Anomaly detection: removing outliers by z-score test"""
+for col in features.columns:
+  indexes = features[abs(features[col]) > 3].index
+  features.drop(indexes, inplace = True)
