@@ -27,3 +27,7 @@ from sklearn.metrics import make_scorer
 
 """Load the dataset"""
 data = pd.read_csv('admissions_data.csv')
+
+"""Investigate the dataset"""
+print(data.info())
+print(data.describe())
