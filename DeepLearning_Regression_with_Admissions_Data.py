@@ -52,3 +52,7 @@ print(features.describe())
 for col in features.columns:
   indexes = features[abs(features[col]) > 3].index
   features.drop(indexes, inplace = True)
+
+
+"""Divide features and labels for train and test parts"""
+features_train, features_test, labels_train, labels_test = train_test_split(features, labels, test_size = 0.20)
