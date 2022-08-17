@@ -69,4 +69,21 @@ def design_model(feature_numbers, learning_rate, layers_modification = []):
     input = layers.InputLayer(input_shape = (feature_numbers,))
     model.add(input)
 
+    #Initialize hidden layer
+    hidden_layer = layers.Dense(units = 16, activation = 'relu')
+
+    #Add hidden layers
+    model.add(hidden_layer)
+    model.add(layers.Dropout(0.2))
+
+    #Initialize optimizer
+    optimizer = Adam(learning_rate = learning_rate)
+
+    #Initialize output layer
+    output = layers.Dense(units = 1, activation = 'sigmoid')
+    model.add(output)
+
+    #Compile model and set loss, metrics and optimizer argumans
+    model.compile(loss = 'mse', metrics = ['mae'], optimizer = optimizer)
+
     return model
