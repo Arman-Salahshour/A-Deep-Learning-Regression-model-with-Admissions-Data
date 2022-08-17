@@ -138,3 +138,21 @@ print(f'dummy score (MAE): {dummy_score}')
 """Achieve achieve ANN model score before tuning"""
 res_mse, res_mae = model.evaluate(features_test, labels_test, verbose = 0)
 print(f'ANN model score (MAE) before tuning: {res_mae}')
+
+
+"""Start tuning the ANN model"""
+n_layer = [2,3]
+fist_layer_nodes = [64, 32, 16]
+last_layer_nodes = [4]
+
+hidden_layers = list(product(n_layer, fist_layer_nodes, last_layer_nodes))
+
+regressor_model = KerasRegressor(build_fn = design_model)
+distributions = dict(epochs = [i for i in range(100,150)],
+                    batch_size = [i for i in range(1,10)],
+                    feature_numbers = [len(columns),] , learning_rate = [0.01,], layers_modification = hidden_layers)
+
+clf = RandomizedSearchCV(estimator = regressor_model, param_distributions = distributions, n_jobs = -1)
+search = clf.fit(features_train, labels_train)
+
+print(search.best_params_)
