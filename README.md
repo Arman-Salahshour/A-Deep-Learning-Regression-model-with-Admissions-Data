@@ -1,7 +1,7 @@
 # Just-For-Fun with Deep-Learning (Part 1)
 Just-For-Fun with Deep-Learning is a series that teaches how to develop a deep learning model from scratch. You should read the comments carefully because they contain a lot of information. This series will be updated with new neural network models and various datasets. 
-Hopefully, you will find it enjoyable ✌️
-Have fun coding 😊
+Hopefully, you will find it enjoyable ✌.
+Have fun coding 😊.
 
 
 # About the project
