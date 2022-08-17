@@ -62,7 +62,11 @@ features_train, features_test, labels_train, labels_test = train_test_split(feat
 
 """Create ANN model"""
 def design_model(feature_numbers, learning_rate, layers_modification = []):
-  '''Create Sequential model object'''
-  model = Sequential()
+    #Create Sequential model object
+    model = Sequential()
 
-  return model
+    #Initialize input layer
+    input = layers.InputLayer(input_shape = (feature_numbers,))
+    model.add(input)
+
+    return model
