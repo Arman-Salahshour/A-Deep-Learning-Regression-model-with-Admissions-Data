@@ -107,3 +107,8 @@ def design_model(feature_numbers, learning_rate, layers_modification = []):
     model.compile(loss = 'mse', metrics = ['mae'], optimizer = optimizer)
 
     return model
+
+
+"""Design a model through design_model without layers_modification argument"""
+model = design_model(len(columns), 0.01)
+print(model.summary())
