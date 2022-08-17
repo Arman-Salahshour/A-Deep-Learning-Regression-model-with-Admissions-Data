@@ -112,3 +112,11 @@ def design_model(feature_numbers, learning_rate, layers_modification = []):
 """Design a model through design_model without layers_modification argument"""
 model = design_model(len(columns), 0.01)
 print(model.summary())
+
+
+
+"""Initialize callback"""
+early = EarlyStopping(monitor = 'val_loss', mode = 'min', patience = 40, verbose = 0 )
+
+"""Fit ANN model"""
+model.fit(features_train, labels_train, epochs = 500, callbacks = [early], batch_size = 5, validation_split = 0.2, verbose = 1)
