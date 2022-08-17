@@ -36,3 +36,6 @@ print(data.describe())
 features = data.iloc[:, :-1]
 labels = data.iloc[:, -1]
 columns = features.columns
+
+"""Convert all of the columns' datatype to float64"""
+features = features.apply(lambda col: col.astype('float64'))
