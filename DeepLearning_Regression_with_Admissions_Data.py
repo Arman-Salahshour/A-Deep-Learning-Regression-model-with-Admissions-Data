@@ -31,3 +31,8 @@ data = pd.read_csv('admissions_data.csv')
 """Investigate the dataset"""
 print(data.info())
 print(data.describe())
+
+"""divide features from labels"""
+features = data.iloc[:, :-1]
+labels = data.iloc[:, -1]
+columns = features.columns
