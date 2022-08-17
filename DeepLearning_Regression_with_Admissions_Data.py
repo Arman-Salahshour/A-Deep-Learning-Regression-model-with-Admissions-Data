@@ -128,3 +128,13 @@ dummy = DummyRegressor()
 
 """Fit dummy model"""
 dummy.fit(features_train, labels_train)
+
+
+"""Achieve dummy score"""
+labels_predicted = dummy.predict(features_test)
+dummy_score = mean_absolute_error(labels_test, labels_predicted)
+print(f'dummy score (MAE): {dummy_score}')
+
+"""Achieve achieve ANN model score before tuning"""
+res_mse, res_mae = model.evaluate(features_test, labels_test, verbose = 0)
+print(f'ANN model score (MAE) before tuning: {res_mae}')
